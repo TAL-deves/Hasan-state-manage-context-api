@@ -1,11 +1,11 @@
-import React, { createContext, useState } from 'react';
+import React, { useState } from 'react';
+import SignleUser from '../SignleUser/SignleUser';
 
-const userContext=createContext();
+const PersonalInfo = () => {
+// const users='hasan'
 
-const Context = ({children}) => {
-    const info={};
 
-    const {users, setUsers}=useState([
+    const [users, setUsers]=useState([
         {
             'id':1,
             'name': 'Hasan',
@@ -36,13 +36,19 @@ const Context = ({children}) => {
             'age':'27',
             'city': 'dhaka'
         }
-    ])
-
+    ]);
     return (
-        <userContext.Provider value={info}>
-            {children}
-        </userContext.Provider>
+        <div>
+
+            <h2>Total Users: {users.length}</h2>
+            {
+                users.map(user=>(<SignleUser
+                key={user.id}
+                user={user}
+                ></SignleUser>))
+            }
+        </div>
     );
 };
 
-export default Context;
+export default PersonalInfo;
